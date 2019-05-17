@@ -9,7 +9,7 @@ import (
 func main() {
 	arr := makeArr()
 	rand.Seed(time.Now().Unix())
-	var x int = arr[rand.Intn(len(arr))]
+	var x uint64 = arr[rand.Intn(len(arr))]
 	var pos int = -1
 
 	for i := 0; i < len(arr) && pos == -1; i++ {
@@ -22,9 +22,9 @@ func main() {
 	fmt.Print("配列の", pos, "番目にあります。")
 }
 
-func makeArr() [1000]int {
-	var arr [1000]int
-	var a, b, sum int = 1, 1, 0
+func makeArr() [1000]uint64 {
+	var arr [1000]uint64
+	var a, b, sum uint64 = 1, 1, 0
 
 	for i := 0; i < len(arr); i++ {
 		if i < 2 {
@@ -37,5 +37,14 @@ func makeArr() [1000]int {
 		}
 	}
 
-	return arr
+	return shuffle(arr)
+}
+
+func shuffle(data [1000]uint64) [1000]uint64 {
+	n := len(data)
+	for i := n - 1; i >= 0; i-- {
+		j := rand.Intn(i + 1)
+		data[i], data[j] = data[j], data[i]
+	}
+	return data
 }

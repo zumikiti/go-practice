@@ -8,14 +8,13 @@ import (
 
 func main() {
 	arr := makeArr()
-	rand.Seed(time.Now().Unix())
-	var x int = arr[rand.Intn(len(arr))]
-	var pos int = -1
-	var left, middle int
-	var right int = len(arr) - 1
+	rand.Seed(time.Now().UnixNano())
+	var x uint64 = arr[rand.Intn(len(arr))]
+	var pos, left, right int = -1, 0, len(arr) - 1
 
 	for pos == -1 && left <= right {
-		middle = ( left + right ) /2
+		middle := ( left + right ) /2
+
 		if arr[middle] == x {
 			pos = middle
 		}
@@ -26,14 +25,15 @@ func main() {
 			left = middle + 1
 		}
 	}
-	fmt.Println(arr)
+
+	fmt.Println(rand.Intn(len(arr)))
 	fmt.Println(x)
 	fmt.Print(pos)
 }
 
-func makeArr() [1000]int {
-	var arr [1000]int
-	var a, b, sum int = 1, 1, 0
+func makeArr() [1000]uint64 {
+	var arr [1000]uint64
+	var a, b, sum uint64 = 1, 1, 0
 
 	for i := 0; i < 1000; i++ {
 		if i < 2 {
@@ -46,15 +46,5 @@ func makeArr() [1000]int {
 		}
 	}
 
-	shuffle(arr)
-
 	return arr
-}
-
-func shuffle(data [1000]int) {
-	n := len(data)
-	for i := n - 1; i >= 0; i-- {
-		j := rand.Intn(i + 1)
-		data[i], data[j] = data[j], data[i]
-	}
 }
