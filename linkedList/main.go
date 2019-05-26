@@ -22,14 +22,18 @@ var (
 
 func main() {
 	// 初期値の連結リスト
-	printstationList(s)
+	printStationList(s)
 
 	// 連結リストに要素を追加
 	insertSstationList(5, "Shinagawa", 2)
-	printstationList(s)
+	printStationList(s)
+
+	// 連結リストの要素を削除
+	deleteStationList(5, 2)
+	printStationList(s)
 }
 
-func printstationList(l stationList) {
+func printStationList(l stationList) {
 	for i := 2; i != -1; {
 		fmt.Print("[ ", l[i].name, " ]->")
 		i = l[i].next
@@ -43,4 +47,9 @@ func insertSstationList(insId int, insName string, prevId int) {
 	}
 	s[prevId].next = insId
 	s = append(s, insertObject...)
+}
+
+func deleteStationList(deleId int, prevId int) {
+	s[prevId].next = s[deleId].next
+	s = append(s[:deleId], s[deleId+1:]...)
 }
