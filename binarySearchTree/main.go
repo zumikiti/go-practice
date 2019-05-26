@@ -28,8 +28,8 @@ func main() {
 	printLogicalBST(rootIdx)
 
 	// 二分探索木を探索
-	fmt.Println("'5'の探索結果 =", searchBST(5))
-	fmt.Println("'8'の探索結果 =", searchBST(8))
+	fmt.Println("'5'の探索結果 =", searchBST(5, rootIdx))
+	fmt.Println("'8'の探索結果 =", searchBST(8, rootIdx))
 }
 
 func addBST(date int) {
@@ -96,20 +96,18 @@ func printLogicalBST(currentIdx int) {
 	}
 }
 
-func searchBST(x int) int {
-	for currentIdx := rootIdx; currentIdx != -1; {
-		if tree[currentIdx].date == x {
-			return currentIdx
-		}
-
-		if tree[currentIdx].date > x {
-			currentIdx = tree[currentIdx].left
-		}
-
-		if tree[currentIdx].date < x {
-			currentIdx = tree[currentIdx].right
-		}
+func searchBST(x int, currentIdx int) int {
+	if currentIdx == -1 {
+		return -1
 	}
 
-	return -1
+	if tree[currentIdx].date == x {
+		return currentIdx
+	}
+
+	if tree[currentIdx].date > x {
+		return searchBST(x, tree[currentIdx].left)
+	}
+
+	return searchBST(x, tree[currentIdx].right)
 }
