@@ -4,26 +4,43 @@ import (
 	"fmt"
 )
 
-// StationListフィールドを定義
-type StationList struct {
+// stationListフィールドを定義
+type stationList []struct {
 	name string // 駅名
 	next int // ポインタ
 }
 
-func main() {
-	s := []struct {
-		name string
-		next int
-	}{
-		{"new Osaka", -1},
+var (
+	s = stationList{
+		{"Shin Osaka", -1},
 		{"Nagoya", 3},
 		{"Tokyo", 4},
 		{"Kyoto", 0},
-		{"new Yokohama", 1},
+		{"Shin Yokohama", 1},
 	}
+)
 
+func main() {
+	// 初期値の連結リスト
+	printstationList(s)
+
+	// 連結リストに要素を追加
+	insertSstationList(5, "Shinagawa", 2)
+	printstationList(s)
+}
+
+func printstationList(l stationList) {
 	for i := 2; i != -1; {
-		fmt.Print("[ ", s[i].name, " ]->")
-		i = s[i].next
+		fmt.Print("[ ", l[i].name, " ]->")
+		i = l[i].next
 	}
+	fmt.Println()
+}
+
+func insertSstationList(insId int, insName string, prevId int) {
+	insertObject := stationList{
+		{insName, s[prevId].next},
+	}
+	s[prevId].next = insId
+	s = append(s, insertObject...)
 }
