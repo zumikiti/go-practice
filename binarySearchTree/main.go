@@ -15,7 +15,13 @@ var tree [10]BST
 
 func main() {
 	addBST(4)
-	fmt.Println(tree)
+	addBST(6)
+	addBST(5)
+	addBST(2)
+	addBST(3)
+	addBST(7)
+	addBST(1)
+	printPhysicalBST()
 }
 
 func addBST(date int) {
@@ -23,13 +29,12 @@ func addBST(date int) {
 
 	// 物理的な位置に追加
 	tree[newIdx] = BST{date, -1, -1}
-fmt.Println(tree[newIdx])
 
 	// 根のデータないなら、理論的な位置にポインタを設定
 	if newIdx != rootIdx {
 		currentIdx := rootIdx
 
-		for ok := false; ok; ok = addFlag == true {
+		for addFlag == false {
 			// より小さい場合は、左を探る
 			if date < tree[currentIdx].date {
 				// 左が末端なら、そこに追加する
@@ -42,7 +47,7 @@ fmt.Println(tree[newIdx])
 			} else {
 				// より大きい場合は、右に探る
 				// 右が末端なら、そこに追加する
-				if tree[currentIdx].left == -1 {
+				if tree[currentIdx].right == -1 {
 					tree[currentIdx].right = newIdx
 					addFlag = true
 				} else {
@@ -53,4 +58,16 @@ fmt.Println(tree[newIdx])
 	}
 
 	newIdx++
+}
+
+func printPhysicalBST() {
+	for i := 0; i < newIdx; i++ {
+		fmt.Printf(
+			"tree[%d]:data = %d, left = %d, right = %d\n",
+			i,
+			tree[i].date,
+			tree[i].left,
+			tree[i].right,
+		)
+	}
 }
