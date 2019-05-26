@@ -5,20 +5,18 @@ import (
 )
 
 // stationListフィールドを定義
-type stationList []struct {
+type stationList struct {
 	name string // 駅名
-	next int // ポインタ
+	next int    // ポインタ
 }
 
-var (
-	s = stationList{
-		{"Shin Osaka", -1},
-		{"Nagoya", 3},
-		{"Tokyo", 4},
-		{"Kyoto", 0},
-		{"Shin Yokohama", 1},
-	}
-)
+var s = []stationList{
+	{"Shin Osaka", -1},
+	{"Nagoya", 3},
+	{"Tokyo", 4},
+	{"Kyoto", 0},
+	{"Shin Yokohama", 1},
+}
 
 func main() {
 	// 初期値の連結リスト
@@ -33,7 +31,7 @@ func main() {
 	printStationList(s)
 }
 
-func printStationList(l stationList) {
+func printStationList(l []stationList) {
 	for i := 2; i != -1; {
 		fmt.Print("[ ", l[i].name, " ]->")
 		i = l[i].next
@@ -42,11 +40,9 @@ func printStationList(l stationList) {
 }
 
 func insertSstationList(insId int, insName string, prevId int) {
-	insertObject := stationList{
-		{insName, s[prevId].next},
-	}
+	insertObject := stationList{insName, s[prevId].next}
 	s[prevId].next = insId
-	s = append(s, insertObject...)
+	s = append(s, insertObject)
 }
 
 func deleteStationList(deleId int, prevId int) {
