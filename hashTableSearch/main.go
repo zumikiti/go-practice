@@ -12,22 +12,8 @@ func hashFunc(i int) int {
 }
 
 func main() {
-	for {
-		// 格納データを入力する　
-		fmt.Printf("\n格納する値＝")
-		data := scnInt()
-
-		// マイナスの値だった場合、格納をやめる
-		if data < 0 {
-			break
-		}
-
-		// ハッシュ値を求める
-		hashV := hashFunc(data)
-
-		// ハッシュ表に格納する
-		hashTable[hashV] = data
-	}
+	// 格納データを入力する　
+	inputHashTable()
 
 	// ハッシュ表からサーチ
 	for {
@@ -50,6 +36,47 @@ func main() {
 			fmt.Print("見つかりませんでした")
 		}
 	}
+}
+
+func inputHashTable() {
+	fmt.Println(hashTable)
+
+	fmt.Printf("\n格納する値＝")
+	data := scnInt()
+
+	// マイナスの値だった場合、格納をやめる
+	if data < 0 {
+		return
+	}
+
+	// ハッシュ値を求める
+	hashV := hashFunc(data)
+
+	// データの格納位置を決める
+	pos := hashV
+	for hashTable[pos] != -1 {
+		// 格納位置を一つ進める
+		pos++
+
+		// 末尾を超えたら先頭に戻す
+		if pos >= len(hashTable) {
+			pos = 0
+		}
+
+		// ハッシュ値の位置まで戻ったら、ハッシュ表が一杯なので、繰り返しを終了する
+		if pos == hashV {
+			return
+		}
+	}
+
+	// ハッシ表が一杯のばあいMSGを表示して抜ける
+	if hashTable[pos] != -1 {
+		fmt.Println("ハッシュ表が一杯です")
+	}
+
+	// ハッシュ表が一杯でなければ、データを格納する
+	hashTable[pos] = data
+	inputHashTable()
 }
 
 func scnInt() int {
