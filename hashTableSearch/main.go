@@ -50,7 +50,7 @@ func inputHashTable() {
 		}
 	}
 
-	// ハッシ表が一杯のばあいMSGを表示して抜ける
+	// ハッシ表が一杯の場合、MSGを表示して抜ける
 	if hashTable[pos] != -1 {
 		fmt.Println("ハッシュ表が一杯です")
 	}
