@@ -16,26 +16,7 @@ func main() {
 	inputHashTable()
 
 	// ハッシュ表からサーチ
-	for {
-		// サーチする値を入力
-		fmt.Printf("\nサーチする値＝")
-		data := scnInt()
-
-		// マイナス値だった場合、サーチをやめる
-		if data < 0 {
-			break
-		}
-
-		// ハッシュ値を求める
-		hashV := hashFunc(data)
-
-		// サーチした結果を表示する
-		if hashTable[hashV] == data {
-			fmt.Printf("%d番目に見つかりました\n", hashV)
-		} else {
-			fmt.Print("見つかりませんでした")
-		}
-	}
+	searchHashTable()
 }
 
 func inputHashTable() {
@@ -77,6 +58,46 @@ func inputHashTable() {
 	// ハッシュ表が一杯でなければ、データを格納する
 	hashTable[pos] = data
 	inputHashTable()
+}
+
+func searchHashTable() {
+	// サーチする値を入力
+	fmt.Printf("\nサーチする値＝")
+	data := scnInt()
+
+	// マイナス値だった場合、サーチをやめる
+	if data < 0 {
+		return
+	}
+
+	// ハッシュ値を求める
+	hashV := hashFunc(data)
+
+	// データをサーチする。
+	pos := hashV
+	for hashTable[pos] != -1 && hashTable[pos] != data {
+		// 探索位置を加ええる
+		pos++
+
+		// 末端を超えたら、先頭に戻す
+		if pos >= len(hashTable) {
+			pos = 0
+		}
+
+		// -1を見つけるか、ハッシュ値の位置まで戻ったらデータが見つからないことが確定なので、繰り返しを終了
+		if hashTable[pos] == -1 || pos == hashV {
+			break
+		}
+	}
+
+	// サーチした結果を表示する
+	if hashTable[pos] == data {
+		fmt.Printf("%d番目に見つかりました\n", pos)
+	} else {
+		fmt.Print("見つかりませんでした")
+	}
+
+	searchHashTable()
 }
 
 func scnInt() int {
