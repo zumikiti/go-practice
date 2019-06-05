@@ -25,6 +25,8 @@ func main() {
 	tasteKanpZero()
 
 	testeKanp()
+
+	answer()
 }
 
 func showKnap(item int) {
@@ -98,4 +100,33 @@ func testeKanp() {
 		}
 		showKnap(item)
 	}
+}
+
+func answer() {
+	fmt.Println("＜ナップザックに入っている商品を調べる＞")
+	var totalWeight, item int
+	for kanp := knapMax; kanp > 0; kanp -= weight[item] {
+		item = lastItem[kanp]
+		fmt.Printf(
+			"%dkgのナップザックに最後に入れた品物は%vです。\n",
+			kanp,
+			name[item],
+		)
+		totalWeight += weight[item]
+		fmt.Printf(
+			" %v, %dkg, %d円\n",
+			name[item],
+			weight[item],
+			value[item],
+		)
+		fmt.Printf(
+			" %dkg - %dkg = %dkgです。\n",
+			kanp,
+			weight[item],
+			kanp - weight[item],
+		)
+	}
+	fmt.Println("\n<解を表示する>")
+	fmt.Printf("重量の合計値　＝　%dkg\n", totalWeight)
+	fmt.Printf("価値の最大値　＝　%d円\n", maxVlaue[itemNum - 1][knapMax])
 }
