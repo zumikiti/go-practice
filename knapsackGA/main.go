@@ -28,6 +28,9 @@ func main() {
 	showIndividual()
 	sortIndividual()
 	showIndividual()
+	selectIndividual()
+	calcIndvidual()
+	showIndividual()
 }
 
 // 個体をランダムに生成する
@@ -110,4 +113,15 @@ func sortIndividual() {
 			ins--
 		}
 	}
+}
+
+// 淘汰するメソット
+func selectIndividual() {
+	// 適用度の上位50％を下位50％にコピーする
+	for ind := 0; ind < indNum / 2; ind++ {
+		for item := 0; item < itemNum; item++ {
+			indGene[ind + indNum / 2][item] = indGene[ind][item]
+		}
+	}
+	fmt.Println("下位50％を淘汰しました")
 }
