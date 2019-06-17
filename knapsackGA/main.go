@@ -23,13 +23,13 @@ var (
 func main() {
 	createIndividual()
 	calcIndvidual()
-	fmt.Println(indGene)
-	fmt.Println(indFitness)
 	showIndividual()
 	sortIndividual()
 	showIndividual()
 	selectIndividual()
+	crossoverIndividual()
 	calcIndvidual()
+	sortIndividual()
 	showIndividual()
 }
 
@@ -49,7 +49,7 @@ func createIndividual() {
 
 // 個体の重量、価格、適用度を計算する
 func calcIndvidual() {
-	for ind := 0; ind < itemNum; ind++ {
+	for ind := 0; ind < indNum; ind++ {
 		// 重量と価値を計算する
 		indWeight[ind] = 0
 		indValue[ind] = 0
@@ -125,3 +125,28 @@ func selectIndividual() {
 	}
 	fmt.Println("下位50％を淘汰しました")
 }
+
+ // 交配するメソッド
+ func crossoverIndividual() {
+	var crossoverPoint int
+
+	 // 下位50％にコピーした個体を対象とする
+	 for ind := indNum / 2; ind < (indNum - 1); ind += 2 {
+		// 交配する位置をランダムに決める
+		r := rand.Float32()
+		crossoverPoint = int(r * 10000) % (itemNum - 1) + 1
+		for item := crossoverPoint; item < itemNum; item++ {
+			// 隣の個体と交配する
+			tmp := indGene[ind][item]
+			indGene[ind][item] = indGene[ind + 1][item]
+			indGene[ind + 1][item] = tmp
+		}
+
+		fmt.Printf(
+			"個体%dと個体%dを%dの位置で交配しました。\n",
+			ind,
+			ind + 1,
+			crossoverPoint,
+		)
+	 }
+ }
