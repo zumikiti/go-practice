@@ -28,6 +28,7 @@ func main() {
 	showIndividual()
 	selectIndividual()
 	crossoverIndividual()
+	mutateIndividual()
 	calcIndvidual()
 	sortIndividual()
 	showIndividual()
@@ -126,8 +127,8 @@ func selectIndividual() {
 	fmt.Println("下位50％を淘汰しました")
 }
 
- // 交配するメソッド
- func crossoverIndividual() {
+// 交配するメソッド
+func crossoverIndividual() {
 	var crossoverPoint int
 
 	 // 下位50％にコピーした個体を対象とする
@@ -148,5 +149,24 @@ func selectIndividual() {
 			ind + 1,
 			crossoverPoint,
 		)
-	 }
- }
+	}
+}
+
+// 突然変異するメソッド
+func mutateIndividual() {
+	// 下位50％を対象にする
+	for ind := indNum / 2; ind < indNum; ind++ {
+		for item := 0; item < itemNum ; item++ {
+			// あらかじめ決めた確率で突然変異する
+			if rand.Float32() <= mutateRate {
+				 // 反転する
+				 indGene[ind][item] ^= 1
+				 fmt.Printf(
+				 	"個体%dの%dの位置で突然変異しました。\n",
+				 	ind,
+				 	item,
+				 )
+			}
+		}
+	}
+}
