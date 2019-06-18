@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"math/rand"
 )
 
@@ -21,17 +22,51 @@ var (
 )
 
 func main() {
+	fmt.Println("最大の世代 = ")
+	genMax := scnInt()
+
+	// 第一世代の個体を生成する
+	indGeneration = 1
 	createIndividual()
+
+	// 適応度を計算する
 	calcIndvidual()
-	showIndividual()
+
+	// 適用度の高い順にソート
 	sortIndividual()
+
+	// 個体表示
 	showIndividual()
-	selectIndividual()
-	crossoverIndividual()
-	mutateIndividual()
-	calcIndvidual()
-	sortIndividual()
-	showIndividual()
+
+	// 一世代ずつ進化する
+	indGeneration++
+	for indGeneration <= genMax {
+		sortIndividual()
+		selectIndividual()
+		crossoverIndividual()
+		mutateIndividual()
+		calcIndvidual()
+		sortIndividual()
+		showIndividual()
+		indGeneration++
+	}
+
+	// もっとも適用度の高い個体を解として表示する
+	fmt.Println("ナップザクに入っている品物を表示する")
+	for item := 0; item < itemNum; item++ {
+		if indGene[0][item] == 1 {
+			fmt.Printf(
+				"%c, %dkg, %d円\n",
+				itemName[item],
+				itemWeight[item],
+				itemValue[item],
+			)
+		}
+	}
+	fmt.Println("<解を表示する>")
+	fmt.Printf("重量の合計値　＝　%dkg\n", indWeight[0])
+	fmt.Printf("価格の最大値　＝　%d円\n", indValue[0])
+
 }
 
 // 個体をランダムに生成する
@@ -169,4 +204,16 @@ func mutateIndividual() {
 			}
 		}
 	}
+}
+
+func scnInt() int {
+	var s string
+	fmt.Scanf("%s", &s)
+
+	data, err := strconv.Atoi(s)
+	if err != nil {
+		return -1
+	}
+
+	return data
 }
