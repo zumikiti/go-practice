@@ -1,0 +1,28 @@
+{
+  "name": "go-practice",
+  "version": "1.0.0",
+  "description": "## 概要 以下の書籍を読み、Javaと疑似言語で紹介されていたので、その内容をGOでやってみた勉強メモです。 [!アルゴリズム　はじめの一歩　完全攻略](https://www.amazon.co.jp/%E6%96%B0%E3%83%BB%E6%A8%99%E6%BA%96%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9E%E3%83%BC%E3%82%BA%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA-%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0-%E3%81%AF%E3%81%98%E3%82%81%E3%81%AE%E4%B8%80%E6%AD%A9-%E5%AE%8C%E5%85%A8%E6%94%BB%E7%95%A5-%E7%9F%A2%E6%B2%A2-%E4%B9%85%E9%9B%84/dp/429710394X/ref=sr_1_8?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0+%E3%81%AF%E3%81%98%E3%82%81&qid=1564414546&s=gateway&sr=8-8)",
+  "main": "index.js",
+  "dependencies": {
+    "textlint-rule-max-ten": "^2.0.3",
+    "textlint-rule-no-mix-dearu-desumasu": "^4.0.0",
+    "textlint-rule-spellcheck-tech-word": "^5.0.0"
+  },
+  "devDependencies": {
+    "textlint": "^11.3.1",
+    "textlint-rule-preset-jtf-style": "^2.3.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zumikiti/go-practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zumikiti/go-practice/issues"
+  },
+  "homepage": "https://github.com/zumikiti/go-practice#readme"
+}
