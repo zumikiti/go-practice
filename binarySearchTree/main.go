@@ -5,8 +5,8 @@ import (
 )
 
 type BST struct {
-	date int
-	left int
+	date  int
+	left  int
 	right int
 }
 

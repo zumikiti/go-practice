@@ -15,12 +15,12 @@ func Prepare() (cipher.AEAD, error) {
 	}
 	key, err := base64.StdEncoding.DecodeString(rawKey)
 	if err != nil {
-		return nil, errors.New("Decode 'ANGO_KEY' key error") 
+		return nil, errors.New("Decode 'ANGO_KEY' key error")
 	}
 
 	block, err := aes.NewCipher(key)
 	if err != nil {
-		return nil, err 
+		return nil, err
 	}
 	return cipher.NewGCM(block)
 }

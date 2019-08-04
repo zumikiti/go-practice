@@ -9,7 +9,7 @@ func main() {
 
 	printArray(a)
 
-	sortArray(a, 0, len(a) - 1)
+	sortArray(a, 0, len(a)-1)
 
 	printArray(a)
 }
@@ -21,7 +21,7 @@ func printArray(a []int) {
 	fmt.Println("\n")
 }
 
- // 配列a[start] - a[end]を昇順にソートする
+// 配列a[start] - a[end]を昇順にソートする
 func sortArray(a []int, start int, end int) {
 	var pivot int
 
@@ -29,16 +29,16 @@ func sortArray(a []int, start int, end int) {
 	if start < end {
 		pivot = divideArray(a, start, end)
 		fmt.Println("pivot", pivot)
-		sortArray(a, start, pivot - 1)
+		sortArray(a, start, pivot-1)
 
-		sortArray(a, pivot + 1, end)
+		sortArray(a, pivot+1, end)
 	}
 }
 
 func divideArray(a []int, head int, tail int) int {
 	var left, right, temp int
 	left = head + 1 // 先頭+1からたどる位置
-	right = tail   // 末端からたどる位置
+	right = tail    // 末端からたどる位置
 
 	// 基準値a[head]より小さい要素を前側に、大きい要素を後ろ側に移動する
 	for {

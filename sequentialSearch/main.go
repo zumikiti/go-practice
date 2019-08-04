@@ -12,7 +12,7 @@ func main() {
 	x, err := strconv.Atoi(os.Args[1])
 
 	if err != nil {
-		fmt.Println(err) 
+		fmt.Println(err)
 		os.Exit(1)
 	}
 

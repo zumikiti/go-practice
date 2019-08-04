@@ -17,11 +17,11 @@ func main() {
 	a, err := strconv.Atoi(os.Args[1])
 	b, err := strconv.Atoi(os.Args[2])
 	if err != nil {
-		fmt.Println(b) 
+		fmt.Println(b)
 		os.Exit(1)
 	}
 
-	for ; a != b; {		
+	for a != b {
 		if a > b {
 			a = a - b
 		} else {
