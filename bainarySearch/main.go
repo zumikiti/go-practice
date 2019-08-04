@@ -13,7 +13,7 @@ func main() {
 	var pos, left, right int = -1, 0, len(arr) - 1
 
 	for pos == -1 && left <= right {
-		middle := ( left + right ) /2
+		middle := (left + right) / 2
 
 		if arr[middle] == x {
 			pos = middle

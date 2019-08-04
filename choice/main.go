@@ -20,5 +20,5 @@ func main() {
 	}
 
 	// 乱数で選択したものを表示
-	fmt.Printf(os.Args[rand.Intn(c) + 1])
+	fmt.Printf(os.Args[rand.Intn(c)+1])
 }

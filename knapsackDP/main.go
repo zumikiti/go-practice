@@ -12,13 +12,13 @@ var (
 	// 品物の名称
 	name = []string{"A", "B", "C", "D", "E"}
 	// 品物の重量
-	weight = []int{1,2,3,4,5}
+	weight = []int{1, 2, 3, 4, 5}
 	// 品物の価値
 	value = []int{100, 300, 350, 500, 650}
 	// 品物を吟味した直後の価値
 	maxVlaue = make([][]int, itemNum, knapMax)
 	// 最後に入れた品物
-	lastItem = make([]int, knapMax + 1)
+	lastItem = make([]int, knapMax+1)
 )
 
 func main() {
@@ -77,16 +77,16 @@ func tasteKanpZero() {
 	showKnap(item)
 }
 
-// 1番目〜itemNum -1番目の品物まで吟味 
+// 1番目〜itemNum -1番目の品物まで吟味
 func testeKanp() {
 	for item := 1; item < itemNum; item++ {
 		for knap := 0; knap <= knapMax; knap++ {
 			// 耐重量以下なら選ぶ
 			if weight[item] <= knap {
 				// 選んだ場合の価格を求める
-				selVal := maxVlaue[item - 1][knap - weight[item]] + value[item]
+				selVal := maxVlaue[item-1][knap-weight[item]] + value[item]
 				// 価格が大きくなるなら、選ぶ
-				if selVal > maxVlaue[item - 1][knap] {
+				if selVal > maxVlaue[item-1][knap] {
 					maxVlaue[item] = append(maxVlaue[item], selVal)
 					lastItem[knap] = item
 				} else {
@@ -123,10 +123,10 @@ func answer() {
 			" %dkg - %dkg = %dkgです。\n",
 			kanp,
 			weight[item],
-			kanp - weight[item],
+			kanp-weight[item],
 		)
 	}
 	fmt.Println("\n<解を表示する>")
 	fmt.Printf("重量の合計値　＝　%dkg\n", totalWeight)
-	fmt.Printf("価値の最大値　＝　%d円\n", maxVlaue[itemNum - 1][knapMax])
+	fmt.Printf("価値の最大値　＝　%d円\n", maxVlaue[itemNum-1][knapMax])
 }

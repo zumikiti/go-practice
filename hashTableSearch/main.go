@@ -12,7 +12,7 @@ func hashFunc(i int) int {
 }
 
 func main() {
-	// 格納データを入力する　
+	// 格納データを入力する
 	inputHashTable()
 
 	// ハッシュ表からサーチ

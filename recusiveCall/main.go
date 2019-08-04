@@ -18,5 +18,5 @@ func factornal(n int) int {
 		return 1
 	}
 
-	return n * factornal(n - 1) 
+	return n * factornal(n-1)
 }

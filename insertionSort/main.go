@@ -16,12 +16,12 @@ func main() {
 		temp = arr[i]
 		for c = i - 1; c >= 0; c-- {
 			if arr[c] > temp {
-				arr[c + 1] = arr[c]
+				arr[c+1] = arr[c]
 			} else {
 				break
 			}
 		}
-		arr[c + 1] = temp
+		arr[c+1] = temp
 	}
 
 	// ソート結果を表示
